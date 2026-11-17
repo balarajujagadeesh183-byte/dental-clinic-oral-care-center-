@@ -1,0 +1,1786 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore SmileCare dental services and detailed information about general dentistry, whitening, implants, orthodontics, root canal and children's dentistry.">
+<title>Dental Services & Details | SmileCare Dental Clinic</title>
+
+<link rel="icon" type="image/png" sizes="64x64" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+    --primary:#00A6A6;
+    --secondary:#092B40;
+    --background:#ffffff;
+    --text:#19394F;
+    --muted:#627789;
+    --border:#E3EBEF;
+    --card:#EAF8F7;
+    --shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+body.dark {
+    --background:#101C27;
+    --secondary:#ffffff;
+    --text:#EAF3F8;
+    --muted:#B2C2CC;
+    --border:#30424F;
+    --card:#203C47;
+    --shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html {
+    scroll-behavior:smooth;
+    scroll-padding-top:120px;
+}
+
+body {
+    background:var(--background);
+    color:var(--text);
+    line-height:1.7;
+    transition:.3s ease;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+button {
+    font-family:inherit;
+}
+
+/* HEADER */
+
+.header {
+    width:100%;
+    min-height:100px;
+    background:var(--background);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:15px 5%;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    gap:20px;
+}
+
+.logo {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-shrink:0;
+}
+
+.logo-icon {
+    width:65px;
+    height:65px;
+    border-radius:14px;
+    background:var(--card);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-icon img {
+    width:50px;
+    height:50px;
+    object-fit:contain;
+}
+
+.logo-content h2 {
+    color:var(--primary);
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo-content h2 span {
+    color:var(--secondary);
+}
+
+.logo-content p {
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:1px;
+    margin-top:-4px;
+}
+
+/* NAVIGATION */
+
+.navbar {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:22px;
+}
+
+.navbar > a,
+.dropdown-toggle {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:10px 0;
+    border:none;
+    background:transparent;
+    color:var(--text);
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    white-space:nowrap;
+}
+
+.navbar > a::after,
+.dropdown-toggle::after {
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:2px;
+    width:0;
+    height:2px;
+    background:var(--primary);
+    transition:.3s;
+}
+
+.navbar > a:hover,
+.navbar > a.active,
+.dropdown-toggle:hover {
+    color:var(--primary);
+}
+
+.navbar > a:hover::after,
+.navbar > a.active::after,
+.dropdown-toggle:hover::after {
+    width:100%;
+}
+
+/* HOME DROPDOWN */
+
+.dropdown {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+}
+
+.dropdown-toggle i {
+    font-size:11px;
+    transition:.3s;
+}
+
+.dropdown.open .dropdown-toggle i {
+    transform:rotate(180deg);
+}
+
+.dropdown-menu {
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    min-width:190px;
+    display:none;
+    flex-direction:column;
+    padding:9px;
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:10px;
+    box-shadow:var(--shadow);
+    z-index:2000;
+}
+
+.dropdown.open .dropdown-menu {
+    display:flex;
+}
+
+.dropdown-menu a {
+    display:block;
+    padding:10px 12px;
+    border-radius:6px;
+    color:var(--text);
+    font-size:13px;
+}
+
+.dropdown-menu a:hover {
+    background:var(--card);
+    color:var(--primary);
+}
+
+/* HEADER BUTTONS */
+
+.header-actions {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+}
+
+.action-btn {
+    width:43px;
+    height:43px;
+    border:1px solid var(--primary);
+    background:transparent;
+    color:var(--text);
+    border-radius:11px;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.action-btn:hover {
+    background:var(--card);
+}
+
+.login-btn {
+    padding:10px 21px;
+    border:1px solid var(--primary);
+    border-radius:10px;
+    background:var(--primary);
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover {
+    background:#078b8b;
+}
+
+/* HERO */
+
+.hero {
+    min-height:470px;
+    display:flex;
+    align-items:center;
+    background:
+    linear-gradient(90deg,rgba(9,36,61,.91),rgba(9,36,61,.42)),
+    url("https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1800&q=85");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    padding:75px 9%;
+}
+
+.hero-content {
+    max-width:720px;
+}
+
+.hero-label {
+    color:#7ce5df;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.hero h1 {
+    font-size:48px;
+    line-height:1.25;
+    margin:18px 0;
+}
+
+.hero p {
+    color:#e1edf2;
+    font-size:15px;
+    line-height:1.9;
+    max-width:620px;
+}
+
+.primary-btn {
+    display:inline-block;
+    margin-top:25px;
+    padding:13px 25px;
+    background:var(--primary);
+    color:white;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary-btn:hover {
+    background:#078b8b;
+    transform:translateY(-3px);
+}
+
+/* COMMON SECTIONS */
+
+.section {
+    padding:80px 8%;
+}
+
+.section-title {
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 45px;
+}
+
+.section-title span {
+    color:var(--primary);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.section-title h2 {
+    color:var(--secondary);
+    font-size:34px;
+    margin:10px 0;
+    line-height:1.3;
+}
+
+body.dark .section-title h2 {
+    color:white;
+}
+
+.section-title p {
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* SERVICES OVERVIEW */
+
+.services-section {
+    background:var(--card);
+}
+
+.services-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.service-card {
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.service-card:hover {
+    transform:translateY(-7px);
+    box-shadow:var(--shadow);
+}
+
+.service-card img {
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.service-content {
+    padding:24px;
+}
+
+.service-number {
+    color:var(--primary);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.service-content h3 {
+    font-size:20px;
+    margin:10px 0;
+    color:var(--text);
+}
+
+.service-content p {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+.service-link {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:17px;
+    color:var(--primary);
+    font-weight:700;
+    font-size:13px;
+}
+
+.service-link:hover {
+    gap:13px;
+}
+
+/* SERVICE DETAILS */
+
+.details-section {
+    padding:85px 8%;
+}
+
+.detail-heading {
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.detail-heading span {
+    color:var(--primary);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.detail-heading h2 {
+    color:var(--secondary);
+    font-size:35px;
+    margin:10px 0;
+}
+
+body.dark .detail-heading h2 {
+    color:white;
+}
+
+.detail-heading p {
+    color:var(--muted);
+    font-size:14px;
+    max-width:700px;
+    margin:auto;
+}
+
+.detail-card {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:55px;
+    padding:40px 0;
+    border-bottom:1px solid var(--border);
+    scroll-margin-top:120px;
+}
+
+.detail-card:last-child {
+    border-bottom:none;
+}
+
+.detail-card.reverse .detail-image {
+    order:2;
+}
+
+.detail-image img {
+    width:100%;
+    height:390px;
+    object-fit:cover;
+    border-radius:14px;
+    box-shadow:var(--shadow);
+}
+
+.detail-content .detail-tag {
+    color:var(--primary);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.detail-content h2 {
+    color:var(--secondary);
+    font-size:29px;
+    line-height:1.35;
+    margin:12px 0 15px;
+}
+
+body.dark .detail-content h2 {
+    color:white;
+}
+
+.detail-content > p {
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.detail-content h3 {
+    font-size:16px;
+    margin:18px 0 10px;
+}
+
+.detail-list {
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px 15px;
+    margin:18px 0;
+}
+
+.detail-list li {
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.detail-list i {
+    color:var(--primary);
+    margin-top:5px;
+}
+
+.detail-note {
+    background:var(--card);
+    border-left:3px solid var(--primary);
+    padding:14px 16px;
+    border-radius:5px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-top:18px;
+}
+
+.detail-btn {
+    display:inline-block;
+    margin-top:20px;
+    padding:11px 22px;
+    border:1px solid var(--primary);
+    border-radius:6px;
+    color:var(--primary);
+    font-size:13px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.detail-btn:hover {
+    background:var(--primary);
+    color:white;
+}
+
+/* WHY CHOOSE US */
+
+.why-section {
+    background:var(--card);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:55px;
+    align-items:center;
+}
+
+.why-image img {
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.why-content span {
+    color:var(--primary);
+    font-weight:700;
+    letter-spacing:2px;
+    font-size:13px;
+}
+
+.why-content h2 {
+    color:var(--secondary);
+    font-size:33px;
+    margin:15px 0;
+    line-height:1.3;
+}
+
+body.dark .why-content h2 {
+    color:white;
+}
+
+.why-content > p {
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.benefit {
+    display:flex;
+    gap:15px;
+    margin:19px 0;
+    align-items:flex-start;
+}
+
+.benefit-icon {
+    min-width:42px;
+    height:42px;
+    background:var(--background);
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    font-size:18px;
+}
+
+.benefit h3 {
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.benefit p {
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* PROCESS */
+
+.process-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.process-card {
+    background:var(--background);
+    padding:28px 20px;
+    text-align:center;
+    border:1px solid var(--border);
+    border-radius:10px;
+    transition:.3s;
+}
+
+.process-card:hover {
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.process-icon {
+    width:62px;
+    height:62px;
+    margin:0 auto 17px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.process-card h3 {
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.process-card p {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* CTA */
+
+.cta {
+    background:var(--secondary);
+    color:white;
+    padding:65px 8%;
+    text-align:center;
+}
+
+.cta h2 {
+    font-size:33px;
+    margin-bottom:15px;
+}
+
+.cta p {
+    color:#d4e4eb;
+    line-height:1.8;
+    font-size:14px;
+    max-width:700px;
+    margin:auto;
+}
+
+/* FOOTER */
+
+.footer {
+    width:100%;
+    background:transparent;
+    color:var(--text);
+    border-top:1px solid var(--border);
+}
+
+.footer-container {
+    max-width:1500px;
+    margin:auto;
+    padding:55px 7%;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1.2fr 1.3fr 1.3fr;
+    gap:30px;
+}
+
+.footer-logo {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.footer-logo .logo-icon {
+    width:58px;
+    height:58px;
+}
+
+.footer-logo .logo-icon img {
+    width:45px;
+    height:45px;
+}
+
+.footer-logo h2 {
+    font-size:23px;
+    color:var(--primary);
+    font-weight:800;
+}
+
+.footer-logo h2 span {
+    color:var(--secondary);
+}
+
+.footer-logo p {
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:1px;
+}
+
+.footer-about > p {
+    font-size:13px;
+    line-height:1.9;
+    color:var(--muted);
+}
+
+.social-links {
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.social-links a {
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--primary);
+    border-radius:50%;
+    color:var(--primary);
+    font-size:15px;
+    transition:.3s;
+}
+
+.social-links a:hover {
+    background:var(--primary);
+    color:white;
+    transform:translateY(-3px);
+}
+
+.footer-column h3 {
+    font-size:17px;
+    color:var(--primary);
+    margin-bottom:19px;
+}
+
+.footer-column ul {
+    list-style:none;
+}
+
+.footer-column ul li {
+    margin-bottom:11px;
+}
+
+.footer-column ul li a {
+    color:var(--text);
+    font-size:12px;
+    transition:.3s;
+}
+
+.footer-column ul li a::before {
+    content:"›";
+    margin-right:10px;
+    font-size:18px;
+    color:var(--primary);
+}
+
+.footer-column ul li a:hover {
+    color:var(--primary);
+    padding-left:5px;
+}
+
+.contact-info p {
+    font-size:12px;
+    color:var(--text);
+    margin-bottom:13px;
+    line-height:1.8;
+}
+
+.contact-info i {
+    color:var(--primary);
+    margin-right:8px;
+}
+
+.copyright {
+    border-top:1px solid var(--border);
+    padding:18px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.legal-links {
+    display:flex;
+    gap:18px;
+}
+
+.legal-links a {
+    color:var(--muted);
+    font-size:12px;
+}
+
+.legal-links a:hover {
+    color:var(--primary);
+}
+
+/* RTL */
+
+body.rtl {
+    direction:rtl;
+    text-align:right;
+}
+
+body.rtl .dropdown-menu {
+    left:auto;
+    right:0;
+}
+
+body.rtl .detail-note {
+    border-left:none;
+    border-right:3px solid var(--primary);
+}
+
+body.rtl .footer-column ul li a::before {
+    margin-right:0;
+    margin-left:10px;
+}
+
+body.rtl .footer-column ul li a:hover {
+    padding-left:0;
+    padding-right:5px;
+}
+
+body.rtl .contact-info i {
+    margin-right:0;
+    margin-left:8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px) {
+    .header {
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .navbar {
+        gap:16px;
+    }
+
+    .footer-container {
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:900px) {
+    .header {
+        padding:15px 4%;
+    }
+
+    .navbar {
+        flex-wrap:wrap;
+        gap:12px 18px;
+    }
+
+    .services-grid {
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .detail-card {
+        gap:30px;
+    }
+
+    .process-grid {
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-container {
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px) {
+    .header {
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .navbar {
+        justify-content:center;
+    }
+
+    .header-actions {
+        justify-content:center;
+    }
+
+    .hero {
+        min-height:420px;
+        padding:60px 7%;
+    }
+
+    .hero h1 {
+        font-size:36px;
+    }
+
+    .detail-card,
+    .why-section {
+        grid-template-columns:1fr;
+    }
+
+    .detail-card.reverse .detail-image {
+        order:0;
+    }
+
+    .detail-image img {
+        height:320px;
+    }
+
+    .why-image img {
+        height:320px;
+    }
+
+    .footer-container {
+        grid-template-columns:repeat(2,1fr);
+        padding:40px 6%;
+    }
+}
+
+@media(max-width:480px) {
+    .section,
+    .details-section {
+        padding:55px 6%;
+    }
+
+    .logo-content h2 {
+        font-size:23px;
+    }
+
+    .navbar {
+        gap:8px 13px;
+    }
+
+    .navbar > a,
+    .dropdown-toggle {
+        font-size:12px;
+    }
+
+    .action-btn {
+        width:40px;
+        height:40px;
+    }
+
+    .hero h1 {
+        font-size:30px;
+    }
+
+    .hero p {
+        font-size:13px;
+    }
+
+    .section-title h2,
+    .detail-heading h2,
+    .why-content h2,
+    .cta h2 {
+        font-size:26px;
+    }
+
+    .services-grid,
+    .process-grid,
+    .detail-list,
+    .footer-container {
+        grid-template-columns:1fr;
+    }
+
+    .detail-content h2 {
+        font-size:25px;
+    }
+
+    .detail-image img {
+        height:260px;
+    }
+
+    .footer-container {
+        padding:40px 7%;
+        gap:28px;
+    }
+
+    .copyright {
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .legal-links {
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        <div class="logo-icon">
+            <img src="images/logo.png" alt="Dental Logo">
+        </div>
+
+        <div class="logo-content">
+            <h2>SMILE<span>CARE</span></h2>
+            <p>DENTAL & ORAL CARE</p>
+        </div>
+    </a>
+
+    <nav class="navbar" aria-label="Main navigation">
+
+        <div class="dropdown" id="homeDropdown">
+            <button class="dropdown-toggle" type="button"
+                    aria-haspopup="true" aria-expanded="false"
+                    onclick="toggleHomeDropdown()">
+                Home <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="dropdown-menu">
+                <a href="index.html">Home – Standard</a>
+                <a href="home-elite.html">Home – Elite</a>
+            </div>
+        </div>
+
+        <a href="about.html">About Us</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="dashboard.html">Dashboard</a>
+
+    </nav>
+
+    <div class="header-actions">
+
+        <button class="action-btn" onclick="toggleRTL()"
+                title="Toggle RTL" aria-label="Toggle text direction">
+            <i class="fa-solid fa-right-left"></i>
+        </button>
+
+        <button class="action-btn" onclick="toggleTheme()"
+                id="themeBtn" title="Toggle Dark Mode"
+                aria-label="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button class="login-btn"
+                onclick="window.location.href='login.html'">
+            Login
+        </button>
+
+    </div>
+
+</header>
+
+<main>
+
+<!-- SECTION 1: HERO -->
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-label">SMILECARE DENTAL SERVICES</span>
+
+        <h1>Complete Dental Care For Your Beautiful Smile</h1>
+
+        <p>
+            Discover professional dental treatments designed to protect
+            your oral health, improve your smile and give you confidence.
+            Explore our services and learn more about each treatment.
+        </p>
+
+        <a href="#services" class="primary-btn">
+            Explore Our Services
+        </a>
+    </div>
+</section>
+
+<!-- SECTION 2: SERVICES OVERVIEW -->
+
+<section class="section services-section" id="services">
+
+    <div class="section-title">
+        <span>WHAT WE OFFER</span>
+        <h2>Our Dental Services</h2>
+        <p>
+            Explore our dental care services and find information about
+            the treatments that may suit your dental needs.
+        </p>
+    </div>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=800&q=80" alt="General Dentistry">
+            <div class="service-content">
+                <span class="service-number">SERVICE 01</span>
+                <h3>General Dentistry</h3>
+                <p>Routine checkups, oral examinations and preventive dental care.</p>
+                <a href="#general-dentistry" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80" alt="Teeth Whitening">
+            <div class="service-content">
+                <span class="service-number">SERVICE 02</span>
+                <h3>Teeth Whitening</h3>
+                <p>Professional dental whitening consultations and treatment options.</p>
+                <a href="#teeth-whitening" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Dental Implants">
+            <div class="service-content">
+                <span class="service-number">SERVICE 03</span>
+                <h3>Dental Implants</h3>
+                <p>Consultations and treatment planning for replacing missing teeth.</p>
+                <a href="#dental-implants" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=800&q=80" alt="Orthodontics">
+            <div class="service-content">
+                <span class="service-number">SERVICE 04</span>
+                <h3>Orthodontics</h3>
+                <p>Teeth alignment consultations and orthodontic care options.</p>
+                <a href="#orthodontics" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=800&q=80" alt="Root Canal Treatment">
+            <div class="service-content">
+                <span class="service-number">SERVICE 05</span>
+                <h3>Root Canal Treatment</h3>
+                <p>Dental assessment and treatment for problems inside the tooth.</p>
+                <a href="#root-canal" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80" alt="Children's Dentistry">
+            <div class="service-content">
+                <span class="service-number">SERVICE 06</span>
+                <h3>Children's Dentistry</h3>
+                <p>Gentle dental checkups and preventive care for children.</p>
+                <a href="#childrens-dentistry" class="service-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECTION 3: SERVICE DETAILS -->
+
+<section class="details-section">
+
+    <div class="detail-heading">
+        <span>KNOW MORE ABOUT OUR TREATMENTS</span>
+        <h2>Detailed Dental Services</h2>
+        <p>
+            Learn about our treatment options, common benefits and
+            consultation process. Your dentist will recommend care
+            based on your individual dental condition.
+        </p>
+    </div>
+
+    <!-- DETAIL 01 -->
+
+    <div class="detail-card" id="general-dentistry">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1000&q=85" alt="General Dental Checkup">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 01 / PREVENTIVE CARE</span>
+            <h2>General Dentistry</h2>
+
+            <p>
+                General dentistry focuses on maintaining healthy teeth
+                and gums through routine examinations, preventive care
+                and treatment of common dental problems. Regular visits
+                can help identify concerns at an early stage.
+            </p>
+
+            <h3>What This Service Includes</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Dental checkups</li>
+                <li><i class="fa-solid fa-circle-check"></i> Oral examinations</li>
+                <li><i class="fa-solid fa-circle-check"></i> Professional cleaning</li>
+                <li><i class="fa-solid fa-circle-check"></i> Cavity assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Gum health evaluation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Preventive guidance</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>Consultation:</strong> Your dentist will examine
+                your teeth and gums and explain any recommended care.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- DETAIL 02 -->
+
+    <div class="detail-card reverse" id="teeth-whitening">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1000&q=85" alt="Professional Teeth Whitening">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 02 / COSMETIC DENTISTRY</span>
+            <h2>Professional Teeth Whitening</h2>
+
+            <p>
+                Teeth whitening is a cosmetic dental treatment that may
+                help improve the appearance of stained or discoloured
+                teeth. A dental professional can assess the cause of
+                discolouration and discuss suitable whitening options.
+            </p>
+
+            <h3>Service Highlights</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Smile assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Stain evaluation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Whitening options</li>
+                <li><i class="fa-solid fa-circle-check"></i> Shade consultation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Aftercare guidance</li>
+                <li><i class="fa-solid fa-circle-check"></i> Oral health review</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>Important:</strong> Whitening suitability varies
+                by patient. Your dentist should assess tooth and gum
+                health before treatment.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- DETAIL 03 -->
+
+    <div class="detail-card" id="dental-implants">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=85" alt="Dental Implant Consultation">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 03 / RESTORATIVE DENTISTRY</span>
+            <h2>Dental Implants</h2>
+
+            <p>
+                Dental implants are one option for replacing missing
+                teeth. They involve a dental implant placed in the jawbone
+                to support a replacement tooth. Treatment suitability
+                depends on bone health, gum condition and overall dental
+                assessment.
+            </p>
+
+            <h3>Implant Service Includes</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Initial consultation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Oral examination</li>
+                <li><i class="fa-solid fa-circle-check"></i> Treatment planning</li>
+                <li><i class="fa-solid fa-circle-check"></i> Implant assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Restoration discussion</li>
+                <li><i class="fa-solid fa-circle-check"></i> Follow-up planning</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>Consultation:</strong> Your dentist will discuss
+                whether implants or another tooth-replacement option
+                may be appropriate for you.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- DETAIL 04 -->
+
+    <div class="detail-card reverse" id="orthodontics">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=1000&q=85" alt="Orthodontic Dental Treatment">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 04 / TEETH ALIGNMENT</span>
+            <h2>Orthodontics & Braces</h2>
+
+            <p>
+                Orthodontic treatment focuses on correcting the position
+                of teeth and improving the way the upper and lower teeth
+                meet. Treatment options may include traditional braces
+                or other suitable alignment methods.
+            </p>
+
+            <h3>Orthodontic Care Includes</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Teeth alignment check</li>
+                <li><i class="fa-solid fa-circle-check"></i> Bite assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Braces consultation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Treatment planning</li>
+                <li><i class="fa-solid fa-circle-check"></i> Progress monitoring</li>
+                <li><i class="fa-solid fa-circle-check"></i> Retainer guidance</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>Consultation:</strong> An orthodontic assessment
+                helps determine the appropriate treatment approach and
+                expected follow-up schedule.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- DETAIL 05 -->
+
+    <div class="detail-card" id="root-canal">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1000&q=85" alt="Root Canal Dental Care">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 05 / ENDODONTIC CARE</span>
+            <h2>Root Canal Treatment</h2>
+
+            <p>
+                Root canal treatment may be recommended when the inner
+                part of a tooth becomes infected or damaged. The procedure
+                involves treating the affected tissue and restoring the
+                tooth as advised by the dentist.
+            </p>
+
+            <h3>Treatment Information</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Tooth examination</li>
+                <li><i class="fa-solid fa-circle-check"></i> Pain assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Diagnostic evaluation</li>
+                <li><i class="fa-solid fa-circle-check"></i> Treatment discussion</li>
+                <li><i class="fa-solid fa-circle-check"></i> Tooth restoration plan</li>
+                <li><i class="fa-solid fa-circle-check"></i> Follow-up guidance</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>Important:</strong> Tooth pain or swelling
+                should be assessed by a dental professional. Treatment
+                depends on the condition of the tooth.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- DETAIL 06 -->
+
+    <div class="detail-card reverse" id="childrens-dentistry">
+
+        <div class="detail-image">
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1000&q=85" alt="Children's Dental Care">
+        </div>
+
+        <div class="detail-content">
+            <span class="detail-tag">SERVICE 06 / PEDIATRIC DENTISTRY</span>
+            <h2>Children's Dentistry</h2>
+
+            <p>
+                Children's dentistry focuses on protecting young smiles
+                through age-appropriate dental examinations, preventive
+                care and oral hygiene education. A friendly approach can
+                help children become comfortable with dental visits.
+            </p>
+
+            <h3>Children's Dental Care Includes</h3>
+
+            <ul class="detail-list">
+                <li><i class="fa-solid fa-circle-check"></i> Children's checkups</li>
+                <li><i class="fa-solid fa-circle-check"></i> Tooth development review</li>
+                <li><i class="fa-solid fa-circle-check"></i> Cavity assessment</li>
+                <li><i class="fa-solid fa-circle-check"></i> Oral hygiene guidance</li>
+                <li><i class="fa-solid fa-circle-check"></i> Preventive care advice</li>
+                <li><i class="fa-solid fa-circle-check"></i> Parent consultation</li>
+            </ul>
+
+            <div class="detail-note">
+                <strong>For parents:</strong> Regular dental visits and
+                age-appropriate oral hygiene habits can support children's
+                dental health as they grow.
+            </div>
+
+            <a href="contact.html" class="detail-btn">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECTION 4: WHY CHOOSE US -->
+
+<section class="section why-section">
+
+    <div class="why-image">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1000&q=85" alt="Modern Dental Clinic">
+    </div>
+
+    <div class="why-content">
+        <span>WHY CHOOSE US</span>
+
+        <h2>Your Smile Deserves The Best Care</h2>
+
+        <p>
+            Our clinic focuses on patient comfort, clear communication
+            and personalized dental care at every visit.
+        </p>
+
+        <div class="benefit">
+            <div class="benefit-icon"><i class="fa-solid fa-user-doctor"></i></div>
+            <div>
+                <h3>Experienced Dental Team</h3>
+                <p>Care from qualified dental professionals.</p>
+            </div>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon"><i class="fa-solid fa-tooth"></i></div>
+            <div>
+                <h3>Modern Equipment</h3>
+                <p>Contemporary tools and treatment facilities.</p>
+            </div>
+        </div>
+
+        <div class="benefit">
+            <div class="benefit-icon"><i class="fa-solid fa-heart"></i></div>
+            <div>
+                <h3>Patient-Focused Care</h3>
+                <p>Friendly support and personalized attention.</p>
+            </div>
+        </div>
+
+        <a href="about.html" class="primary-btn">Learn More About Us</a>
+    </div>
+
+</section>
+
+<!-- SECTION 5: TREATMENT PROCESS -->
+
+<section class="section">
+
+    <div class="section-title">
+        <span>HOW IT WORKS</span>
+        <h2>Your Journey To A Healthy Smile</h2>
+        <p>
+            Our simple process helps make your dental visit
+            comfortable and convenient.
+        </p>
+    </div>
+
+    <div class="process-grid">
+
+        <div class="process-card" style="border: 1px solid var(--primary);">
+            <div class="process-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <h3>Book Appointment</h3>
+            <p>Contact our clinic and schedule a convenient visit.</p>
+        </div>
+
+        <div class="process-card" style="border: 1px solid var(--primary);">
+            <div class="process-icon"><i class="fa-solid fa-user-doctor"></i></div>
+            <h3>Dental Consultation</h3>
+            <p>Discuss your dental concerns with our dental team.</p>
+        </div>
+
+        <div class="process-card" style="border: 1px solid var(--primary);">
+            <div class="process-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+            <h3>Personalized Treatment</h3>
+            <p>Understand your treatment options and care plan.</p>
+        </div>
+
+        <div class="process-card" style="border: 1px solid var(--primary);">
+            <div class="process-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+            <h3>Follow-Up Care</h3>
+            <p>Receive guidance for maintaining your oral health.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SECTION 6: CTA -->
+
+<section class="cta">
+    <h2>Ready To Take Care Of Your Smile?</h2>
+
+    <p>
+        Schedule your dental consultation and take the next step
+        towards better oral health.
+    </p>
+
+    <a href="contact.html" class="primary-btn">
+        Book Your Appointment
+    </a>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- ABOUT CLINIC -->
+
+        <div class="footer-about">
+
+            <div class="footer-logo">
+                <div class="logo-icon">
+                    <img src="images/logo.png" alt="Dental Logo">
+                </div>
+
+                <div>
+                    <h2>SMILE<span>CARE</span></h2>
+                    <p>DENTAL & ORAL CARE</p>
+                </div>
+            </div>
+
+            <p>
+                Your smile is our priority. We provide professional
+                dental treatments and advanced oral care for a
+                healthy, confident and beautiful smile.
+            </p>
+
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+        </div>
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- OUR SERVICES -->
+
+        <div class="footer-column">
+            <h3>Our Services</h3>
+
+            <ul>
+                <li><a href="#general-dentistry">General Dentistry</a></li>
+                <li><a href="#teeth-whitening">Teeth Whitening</a></li>
+                <li><a href="#dental-implants">Dental Implants</a></li>
+                <li><a href="#orthodontics">Orthodontics</a></li>
+                <li><a href="#root-canal">Root Canal</a></li>
+                <li><a href="#childrens-dentistry">Children's Dentistry</a></li>
+            </ul>
+        </div>
+
+        <!-- PATIENT SUPPORT -->
+
+        <div class="footer-column">
+            <h3>Patient Support</h3>
+
+            <ul>
+                <li><a href="contact.html">FAQs</a></li>
+                <li><a href="contact.html">Book Appointment</a></li>
+                <li><a href="contact.html">Patient Guidelines</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="contact.html">Payment Information</a></li>
+            </ul>
+        </div>
+
+        <!-- CONTACT US -->
+
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+
+            <div class="contact-info">
+                <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fa-solid fa-envelope"></i> support@smilecare.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Hyderabad, Telangana</p>
+                <p><i class="fa-solid fa-clock"></i> Mon - Sat: 9 AM - 8 PM</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+        <p>
+            &copy; <span id="currentYear"></span>
+            SmileCare Dental Clinic. All Rights Reserved.
+        </p>
+
+        <div class="legal-links">
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+/* DARK / LIGHT MODE */
+
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    const icon = document.querySelector("#themeBtn i");
+
+    if (document.body.classList.contains("dark")) {
+        icon.className = "fa-solid fa-sun";
+        localStorage.setItem("theme","dark");
+    } else {
+        icon.className = "fa-solid fa-moon";
+        localStorage.setItem("theme","light");
+    }
+}
+
+/* LOAD SAVED THEME */
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    document.querySelector("#themeBtn i").className =
+        "fa-solid fa-sun";
+}
+
+/* RTL / LTR */
+
+function toggleRTL() {
+    document.body.classList.toggle("rtl");
+
+    const isRTL = document.body.classList.contains("rtl");
+
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+
+    localStorage.setItem("direction",isRTL ? "rtl" : "ltr");
+}
+
+/* LOAD SAVED DIRECTION */
+
+if (localStorage.getItem("direction") === "rtl") {
+    document.body.classList.add("rtl");
+    document.documentElement.dir = "rtl";
+}
+
+/* HOME DROPDOWN */
+
+function toggleHomeDropdown() {
+    const dropdown = document.getElementById("homeDropdown");
+    const button = dropdown.querySelector(".dropdown-toggle");
+
+    dropdown.classList.toggle("open");
+
+    button.setAttribute(
+        "aria-expanded",
+        dropdown.classList.contains("open")
+    );
+}
+
+/* CLOSE DROPDOWN OUTSIDE CLICK */
+
+document.addEventListener("click",function(event) {
+    const dropdown = document.getElementById("homeDropdown");
+
+    if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("open");
+
+        dropdown.querySelector(".dropdown-toggle")
+            .setAttribute("aria-expanded","false");
+    }
+});
+
+/* CLOSE DROPDOWN WITH ESCAPE */
+
+document.addEventListener("keydown",function(event) {
+    if (event.key === "Escape") {
+        const dropdown = document.getElementById("homeDropdown");
+
+        dropdown.classList.remove("open");
+
+        dropdown.querySelector(".dropdown-toggle")
+            .setAttribute("aria-expanded","false");
+    }
+});
+
+/* CURRENT YEAR */
+
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

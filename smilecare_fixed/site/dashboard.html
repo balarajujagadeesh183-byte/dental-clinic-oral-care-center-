@@ -1,0 +1,2194 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Dashboard | SMILECARE Dental Clinic</title>
+
+<link rel="icon" type="image/png" sizes="64x64" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --primary:#00A6A6;
+    --primary-dark:#078b8b;
+    --secondary:#092B40;
+    --background:#ffffff;
+    --page:#f5f9fa;
+    --text:#19394F;
+    --heading:#092B40;
+    --muted:#627789;
+    --border:#E3EBEF;
+    --card:#ffffff;
+    --soft:#EAF8F7;
+    --green:#20a477;
+    --orange:#e99a3d;
+    --red:#e65c64;
+    --purple:#9471d2;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--page);
+    color:var(--text);
+    min-height:100vh;
+}
+
+body.dark-mode{
+    --background:#101C27;
+    --page:#101C27;
+    --card:#172b38;
+    --text:#e2edf2;
+    --heading:#f1f7fa;
+    --muted:#a6bac6;
+    --border:#30424F;
+    --soft:#203c47;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* MAIN LAYOUT */
+
+.dashboard-layout{
+    min-height:100vh;
+    display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:260px;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+    padding:23px 17px;
+    background:var(--secondary);
+    color:white;
+    transition:.3s;
+    overflow-y:auto;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:0 8px 25px;
+    border-bottom:1px solid rgba(255,255,255,.13);
+}
+
+.brand img{
+    width:49px;
+    height:49px;
+    object-fit:contain;
+}
+
+.brand-name{
+    display:flex;
+    flex-direction:column;
+    line-height:1.2;
+}
+
+.brand-name strong{
+    color:white;
+    font-size:20px;
+    font-weight:800;
+}
+
+.brand-name span{
+    color:#62d7cb;
+    font-size:9px;
+    letter-spacing:1.5px;
+    font-weight:600;
+    margin-top:4px;
+}
+
+.sidebar-label{
+    color:#8da9b7;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2px;
+    padding:25px 12px 12px;
+}
+
+.sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.sidebar-nav a{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    width:100%;
+    padding:12px 14px;
+    border-radius:8px;
+    color:#c0d1d9;
+    font-size:11px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.sidebar-nav a i{
+    width:19px;
+    text-align:center;
+    font-size:15px;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active{
+    background:rgba(0,166,166,.23);
+    color:white;
+}
+
+.sidebar-nav a.active{
+    border-left:3px solid #48d7cc;
+}
+
+.sidebar-bottom{
+    margin-top:auto;
+    padding-top:25px;
+}
+
+.help-card{
+    padding:16px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;
+}
+
+.help-card i{
+    color:#65ddd1;
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.help-card h4{
+    color:white;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.help-card p{
+    color:#b5c8d1;
+    font-size:10px;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.help-card a{
+    color:#6fe1d7;
+    font-size:10px;
+    font-weight:700;
+}
+
+.logout-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    padding:14px;
+    margin-top:14px;
+    border:none;
+    border-radius:8px;
+    background:transparent;
+    color:#ff9ba1;
+    font-size:11px;
+    font-weight:700;
+    text-align:left;
+}
+
+.logout-btn:hover{
+    background:rgba(255,100,100,.1);
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+    width:calc(100% - 260px);
+    margin-left:260px;
+    min-width:0;
+}
+
+.topbar{
+    height:76px;
+    padding:0 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:500;
+}
+
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.menu-toggle{
+    display:none;
+    width:38px;
+    height:38px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    background:var(--card);
+    color:var(--text);
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:11px;
+}
+
+.breadcrumb strong{
+    color:var(--heading);
+}
+
+.topbar-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.top-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    position:relative;
+    border:1px solid var(--border);
+    border-radius:50%;
+    background:var(--card);
+    color:var(--text);
+}
+
+.notification-dot{
+    position:absolute;
+    top:6px;
+    right:7px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--red);
+}
+
+.profile-menu{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding-left:13px;
+    border-left:1px solid var(--border);
+}
+
+.profile-avatar{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#00A6A6,#66d9ce);
+    border-radius:50%;
+    color:white;
+    font-size:14px;
+    font-weight:800;
+}
+
+.profile-info strong{
+    display:block;
+    color:var(--heading);
+    font-size:11px;
+}
+
+.profile-info span{
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* PAGE CONTENT */
+
+.page-content{
+    padding:30px 32px 45px;
+    max-width:1600px;
+    margin:auto;
+}
+
+.page-section{
+    display:none;
+    animation:fadeIn .35s ease;
+}
+
+.page-section.active{
+    display:block;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+.page-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:24px;
+}
+
+.page-title h1{
+    color:var(--heading);
+    font-size:25px;
+    font-weight:700;
+}
+
+.page-title p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:5px;
+}
+
+.primary-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:11px 17px;
+    border:none;
+    border-radius:7px;
+    background:var(--primary);
+    color:white;
+    font-size:10px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+}
+
+/* WELCOME BANNER */
+
+.welcome-banner{
+    min-height:190px;
+    padding:28px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    border-radius:13px;
+    background:
+        linear-gradient(90deg,rgba(5,35,54,.94),rgba(0,105,105,.68)),
+        url("https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1400&q=85") center/cover;
+    margin-bottom:25px;
+}
+
+.welcome-content span{
+    color:#8ce5db;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.welcome-content h2{
+    color:white;
+    font-size:28px;
+    margin:8px 0;
+    font-weight:700;
+}
+
+.welcome-content p{
+    color:#e0eeee;
+    font-size:11px;
+    max-width:480px;
+    line-height:1.8;
+}
+
+.welcome-content a{
+    display:inline-flex;
+    gap:8px;
+    align-items:center;
+    margin-top:16px;
+    padding:10px 16px;
+    border-radius:6px;
+    background:white;
+    color:var(--primary-dark);
+    font-size:10px;
+    font-weight:800;
+}
+
+.welcome-decoration{
+    width:140px;
+    height:140px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:50%;
+    color:rgba(255,255,255,.9);
+    font-size:70px;
+}
+
+/* STAT CARDS */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+    margin-bottom:24px;
+}
+
+.stat-card{
+    padding:18px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.stat-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.stat-icon{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    font-size:16px;
+}
+
+.stat-icon.teal{background:rgba(0,166,166,.12);color:var(--primary);}
+.stat-icon.green{background:rgba(32,164,119,.12);color:var(--green);}
+.stat-icon.orange{background:rgba(233,154,61,.13);color:var(--orange);}
+.stat-icon.purple{background:rgba(148,113,210,.13);color:var(--purple);}
+
+.stat-card small{
+    color:var(--muted);
+    font-size:9px;
+    font-weight:700;
+}
+
+.stat-card h2{
+    color:var(--heading);
+    font-size:25px;
+    margin:5px 0;
+}
+
+.stat-card p{
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* PANELS */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:19px;
+    margin-bottom:22px;
+}
+
+.panel{
+    padding:21px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:11px;
+    min-width:0;
+}
+
+.panel-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:19px;
+}
+
+.panel-header h3{
+    color:var(--heading);
+    font-size:13px;
+}
+
+.panel-header a{
+    color:var(--primary);
+    font-size:10px;
+    font-weight:700;
+}
+
+/* TREATMENT CARD */
+
+.treatment-image{
+    height:160px;
+    position:relative;
+    overflow:hidden;
+    border-radius:9px;
+    margin-bottom:16px;
+}
+
+.treatment-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.treatment-badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    padding:6px 10px;
+    background:var(--green);
+    color:white;
+    border-radius:20px;
+    font-size:8px;
+    font-weight:800;
+}
+
+.treatment-title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.treatment-title-row h3{
+    color:var(--heading);
+    font-size:14px;
+}
+
+.treatment-title-row p{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:5px;
+}
+
+.progress-number{
+    color:var(--primary);
+    font-size:17px;
+    font-weight:800;
+}
+
+.progress-track{
+    width:100%;
+    height:8px;
+    margin:15px 0 9px;
+    overflow:hidden;
+    border-radius:20px;
+    background:var(--soft);
+}
+
+.progress-fill{
+    height:100%;
+    width:65%;
+    background:linear-gradient(90deg,#00A6A6,#66d9ce);
+    border-radius:inherit;
+}
+
+.progress-footer{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* TIMELINE */
+
+.timeline{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.timeline-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.timeline-icon{
+    width:35px;
+    height:35px;
+    flex-shrink:0;
+    display:grid;
+    place-items:center;
+    background:var(--soft);
+    border-radius:50%;
+    color:var(--primary);
+    font-size:12px;
+}
+
+.timeline-item h4{
+    color:var(--heading);
+    font-size:10px;
+}
+
+.timeline-item p{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:3px;
+}
+
+.timeline-item span{
+    display:block;
+    color:var(--primary);
+    font-size:9px;
+    margin-top:3px;
+}
+
+/* APPOINTMENTS */
+
+.appointment{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.appointment:last-child{
+    border-bottom:none;
+}
+
+.date-box{
+    width:48px;
+    height:50px;
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+    background:var(--soft);
+    border-radius:8px;
+}
+
+.date-box strong{
+    color:var(--primary);
+    font-size:17px;
+    line-height:1;
+}
+
+.date-box span{
+    color:var(--muted);
+    font-size:8px;
+    font-weight:800;
+}
+
+.appointment-info h4{
+    color:var(--heading);
+    font-size:10px;
+}
+
+.appointment-info p{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* TABLE */
+
+.table-panel{
+    padding:21px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:11px;
+    overflow-x:auto;
+    margin-bottom:22px;
+}
+
+table{
+    width:100%;
+    min-width:570px;
+    border-collapse:collapse;
+}
+
+th{
+    padding:13px 11px;
+    background:var(--soft);
+    color:var(--muted);
+    font-size:9px;
+    font-weight:700;
+    text-align:left;
+}
+
+td{
+    padding:14px 11px;
+    color:var(--text);
+    border-bottom:1px solid var(--border);
+    font-size:9px;
+}
+
+tr:last-child td{
+    border-bottom:none;
+}
+
+.status{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:8px;
+    font-weight:800;
+}
+
+.status.completed{background:rgba(32,164,119,.12);color:var(--green);}
+.status.pending{background:rgba(233,154,61,.14);color:var(--orange);}
+.status.progress{background:rgba(0,166,166,.12);color:var(--primary);}
+.status.cancelled{background:rgba(230,92,100,.12);color:var(--red);}
+
+/* PROFILE */
+
+.profile-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.profile-field{
+    padding:14px;
+    background:var(--soft);
+    border-radius:8px;
+}
+
+.profile-field label{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    margin-bottom:6px;
+}
+
+.profile-field strong{
+    color:var(--heading);
+    font-size:11px;
+}
+
+/* FORMS */
+
+.form-panel{
+    max-width:800px;
+    padding:24px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:11px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    color:var(--heading);
+    font-size:10px;
+    font-weight:600;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:7px;
+    outline:none;
+    background:var(--soft);
+    color:var(--text);
+    font-size:10px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--primary);
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* NOTIFICATIONS */
+
+.notification-item{
+    display:flex;
+    gap:13px;
+    padding:16px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.notification-item:last-child{
+    border-bottom:none;
+}
+
+.notification-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+    border-radius:50%;
+    background:var(--soft);
+    color:var(--primary);
+}
+
+.notification-item h4{
+    color:var(--heading);
+    font-size:10px;
+}
+
+.notification-item p{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:4px;
+}
+
+/* EMPTY STATE */
+
+.empty-state{
+    padding:40px 20px;
+    text-align:center;
+    color:var(--muted);
+}
+
+.empty-state i{
+    font-size:34px;
+    color:var(--primary);
+    margin-bottom:13px;
+}
+
+.empty-state h3{
+    color:var(--heading);
+    font-size:15px;
+    margin-bottom:7px;
+}
+
+.empty-state p{
+    font-size:10px;
+}
+
+/* FOOTER */
+
+.dashboard-footer{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:22px 0 5px;
+    color:var(--muted);
+    font-size:9px;
+}
+
+/* RTL SUPPORT */
+
+html[dir="rtl"] .sidebar{
+    left:auto;
+    right:0;
+}
+
+html[dir="rtl"] .main-content{
+    margin-left:0;
+    margin-right:260px;
+}
+
+html[dir="rtl"] .sidebar-nav a.active{
+    border-left:none;
+    border-right:3px solid #48d7cc;
+}
+
+html[dir="rtl"] .profile-menu{
+    padding-left:0;
+    padding-right:13px;
+    border-left:none;
+    border-right:1px solid var(--border);
+}
+
+html[dir="rtl"] th,
+html[dir="rtl"] td{
+    text-align:right;
+}
+
+html[dir="rtl"] .treatment-badge{
+    left:auto;
+    right:12px;
+}
+
+html[dir="rtl"] .sidebar{
+    text-align:right;
+}
+
+html[dir="rtl"] .sidebar-nav a{
+    text-align:right;
+}
+
+html[dir="rtl"] .sidebar-nav a i{
+    margin-left:0;
+}
+
+html[dir="rtl"] .logout-btn{
+    text-align:right;
+}
+
+html[dir="rtl"] .form-group{
+    text-align:right;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1150px){
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:900px){
+    .sidebar{
+        transform:translateX(-100%);
+    }
+
+    html[dir="rtl"] .sidebar{
+        transform:translateX(100%);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+        box-shadow:10px 0 30px rgba(0,0,0,.2);
+    }
+
+    .main-content{
+        width:100%;
+        margin-left:0;
+        margin-right:0;
+    }
+
+    html[dir="rtl"] .main-content{
+        margin-right:0;
+    }
+
+    .menu-toggle{
+        display:grid;
+        place-items:center;
+    }
+
+    .topbar{
+        padding:0 20px;
+    }
+
+    .page-content{
+        padding:25px 20px;
+    }
+
+    .welcome-decoration{
+        width:110px;
+        height:110px;
+        font-size:50px;
+    }
+}
+
+@media(max-width:600px){
+    .topbar{
+        height:67px;
+        padding:0 12px;
+    }
+
+    .page-content{
+        padding:20px 12px;
+    }
+
+    .profile-info{
+        display:none;
+    }
+
+    .topbar-actions{
+        gap:7px;
+    }
+
+    .page-title{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .page-title h1{
+        font-size:22px;
+    }
+
+    .welcome-banner{
+        padding:22px 18px;
+        min-height:175px;
+    }
+
+    .welcome-content h2{
+        font-size:22px;
+    }
+
+    .welcome-decoration{
+        display:none;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:12px;
+    }
+
+    .stat-card h2{
+        font-size:21px;
+    }
+
+    .panel{
+        padding:15px;
+    }
+
+    .form-grid,
+    .profile-card{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .dashboard-footer{
+        flex-direction:column;
+    }
+}
+.top-icon {
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+        <img src="images/Glossy Blue Ribbon Tooth Emblem.png" alt="SMILECARE Logo">
+        <div class="brand-name">
+            <strong>SMILECARE</strong>
+            <span>DENTAL & ORAL CARE</span>
+        </div>
+    </div>
+
+    <span class="sidebar-label">MAIN MENU</span>
+
+    <nav class="sidebar-nav">
+        <a href="#" class="active" data-page="overview">
+            <i class="fa-solid fa-chart-pie"></i> Overview
+        </a>
+
+        <a href="#" data-page="appointments">
+            <i class="fa-solid fa-calendar-check"></i> Appointments
+        </a>
+
+        <a href="#" data-page="treatments">
+            <i class="fa-solid fa-tooth"></i> My Treatments
+        </a>
+
+        <a href="#" data-page="payments">
+            <i class="fa-solid fa-credit-card"></i> Payments
+        </a>
+
+        <a href="#" data-page="prescriptions">
+            <i class="fa-solid fa-file-prescription"></i> Prescriptions
+        </a>
+
+        <a href="#" data-page="notifications">
+            <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+    </nav>
+
+    <span class="sidebar-label">ACCOUNT</span>
+
+    <nav class="sidebar-nav">
+        <a href="#" data-page="profile">
+            <i class="fa-solid fa-user"></i> My Profile
+        </a>
+
+        <a href="#" data-page="settings">
+            <i class="fa-solid fa-gear"></i> Settings
+        </a>
+
+        <a href="contact.html">
+            <i class="fa-solid fa-headset"></i> Support
+        </a>
+
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i> Visit Website
+        </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="help-card">
+            <i class="fa-solid fa-circle-question"></i>
+            <h4>Need Assistance?</h4>
+            <p>Have questions about your dental treatment or appointment?</p>
+            <a href="contact.html">Contact Support →</a>
+        </div>
+
+        <button class="logout-btn" id="logoutBtn" type="button">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle sidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="breadcrumb">
+                Dashboard / <strong id="breadcrumbTitle">Overview</strong>
+            </div>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="top-icon" id="themeToggle" type="button" aria-label="Toggle theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button class="top-icon" id="rtlBtn" type="button" aria-label="Toggle RTL" title="Toggle RTL">
+    <i class="fa-solid fa-right-left"></i>
+</button>
+
+            <div class="profile-menu">
+                <div class="profile-avatar" id="topAvatar">P</div>
+                <div class="profile-info">
+                    <strong id="topName">Patient Name</strong>
+                    <span>Patient Account</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <main class="page-content">
+
+        <!-- OVERVIEW -->
+        <section class="page-section active" id="overview">
+
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <span>WELCOME TO SMILECARE DENTAL CLINIC</span>
+                    <h2>Hello, <span id="welcomeName">Patient</span>! 👋</h2>
+                    <p>Take care of your smile. Manage your dental appointments, track your treatments and stay updated with your oral health journey.</p>
+                    <a href="#" data-page="appointments">BOOK AN APPOINTMENT <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="welcome-decoration">
+                    <i class="fa-solid fa-tooth"></i>
+                </div>
+            </div>
+
+            <div class="page-title">
+                <div>
+                    <h1>Dashboard Overview</h1>
+                    <p>Here's an overview of your dental care activities.</p>
+                </div>
+
+                <button class="primary-btn" type="button" onclick="showPage('appointments')">
+                    <i class="fa-solid fa-plus"></i> Book Appointment
+                </button>
+            </div>
+
+            <!-- STATISTICS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon teal"><i class="fa-solid fa-users"></i></div>
+                        <small>PATIENT VISITS</small>
+                    </div>
+                    <h2>08</h2>
+                    <p>Your sample clinic visit count</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                        <small>COMPLETED</small>
+                    </div>
+                    <h2>05</h2>
+                    <p>Completed treatment sessions</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange"><i class="fa-solid fa-clock"></i></div>
+                        <small>UPCOMING</small>
+                    </div>
+                    <h2>02</h2>
+                    <p>Upcoming appointments</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple"><i class="fa-solid fa-tooth"></i></div>
+                        <small>TREATMENTS</small>
+                    </div>
+                    <h2>03</h2>
+                    <p>Registered treatment records</p>
+                </div>
+
+            </div>
+
+            <!-- TREATMENT + TIMELINE -->
+            <div class="content-grid">
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>My Current Treatment</h3>
+                        <a href="#" data-page="treatments">View Details →</a>
+                    </div>
+
+                    <div class="treatment-image">
+                        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1000&q=85" alt="Dental treatment">
+                        <span class="treatment-badge">IN PROGRESS</span>
+                    </div>
+
+                    <div class="treatment-title-row">
+                        <div>
+                            <h3>Dental Cleaning</h3>
+                            <p>Treatment ID: SC-2026-001</p>
+                        </div>
+                        <span class="progress-number">65%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                    <div class="progress-footer">
+                        <span>Treatment Progress</span>
+                        <span>65% Completed</span>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Recent Treatment Updates</h3>
+                        <a href="#" data-page="notifications">See All →</a>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
+                            <div>
+                                <h4>Initial Consultation</h4>
+                                <p>Patient consultation completed.</p>
+                                <span>Completed</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-tooth"></i></div>
+                            <div>
+                                <h4>Dental Cleaning</h4>
+                                <p>Cleaning treatment in progress.</p>
+                                <span>In Progress</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                            <div>
+                                <h4>Follow-up Checkup</h4>
+                                <p>Next dental checkup session.</p>
+                                <span>Upcoming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- APPOINTMENTS + PAYMENT -->
+            <div class="content-grid">
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Upcoming Appointments</h3>
+                        <a href="#" data-page="appointments">View All →</a>
+                    </div>
+
+                    <div class="appointment">
+                        <div class="date-box">
+                            <strong>12</strong>
+                            <span>NOV</span>
+                        </div>
+                        <div class="appointment-info">
+                            <h4>Dental Cleaning</h4>
+                            <p><i class="fa-regular fa-clock"></i> 10:30 AM | Dr. Dental Specialist</p>
+                        </div>
+                    </div>
+
+                    <div class="appointment">
+                        <div class="date-box">
+                            <strong>18</strong>
+                            <span>NOV</span>
+                        </div>
+                        <div class="appointment-info">
+                            <h4>Follow-up Checkup</h4>
+                            <p><i class="fa-regular fa-clock"></i> 02:00 PM | General Consultation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Payment Summary</h3>
+                        <a href="#" data-page="payments">View All →</a>
+                    </div>
+
+                    <div style="margin-bottom:18px;">
+                        <small style="color:var(--muted);font-size:9px;">TOTAL TREATMENT COST (SAMPLE)</small>
+                        <h2 style="color:var(--heading);font-size:25px;margin-top:5px;">₹15,000</h2>
+                    </div>
+
+                    <div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:8px;">
+                        <span style="color:var(--muted);">Amount Paid</span>
+                        <strong style="color:var(--green);">₹10,000</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width:66.6%;background:var(--green);"></div>
+                    </div>
+
+                    <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:10px;">
+                        <span style="color:var(--muted);">Remaining</span>
+                        <strong style="color:var(--heading);">₹5,000</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RECENT TRANSACTIONS -->
+            <div class="table-panel">
+                <div class="panel-header">
+                    <h3>Recent Transactions</h3>
+                    <a href="#" data-page="payments">All Payments →</a>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TRANSACTION ID</th>
+                            <th>DATE</th>
+                            <th>DESCRIPTION</th>
+                            <th>AMOUNT</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SC-TXN-001</td>
+                            <td>01 Nov 2026</td>
+                            <td>Dental Consultation</td>
+                            <td>₹2,000</td>
+                            <td><span class="status completed">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>SC-TXN-002</td>
+                            <td>05 Nov 2026</td>
+                            <td>Dental Cleaning</td>
+                            <td>₹3,000</td>
+                            <td><span class="status completed">Paid</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- APPOINTMENTS -->
+        <section class="page-section" id="appointments">
+
+            <div class="page-title">
+                <div>
+                    <h1>My Appointments</h1>
+                    <p>Manage your dental consultations and checkup schedules.</p>
+                </div>
+            </div>
+
+            <div class="content-grid">
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Scheduled Appointments</h3>
+                    </div>
+
+                    <div class="appointment">
+                        <div class="date-box">
+                            <strong>12</strong>
+                            <span>NOV</span>
+                        </div>
+                        <div class="appointment-info">
+                            <h4>Dental Cleaning</h4>
+                            <p>10:30 AM | General Dental Care</p>
+                            <span class="status pending">Upcoming</span>
+                        </div>
+                    </div>
+
+                    <div class="appointment">
+                        <div class="date-box">
+                            <strong>18</strong>
+                            <span>NOV</span>
+                        </div>
+                        <div class="appointment-info">
+                            <h4>Follow-up Checkup</h4>
+                            <p>02:00 PM | Dental Consultation</p>
+                            <span class="status progress">Scheduled</span>
+                        </div>
+                    </div>
+
+                    <div class="empty-state">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <h3>Need Another Appointment?</h3>
+                        <p>Use the appointment request form to submit a request.</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Book an Appointment</h3>
+                    </div>
+
+                    <form id="appointmentForm">
+
+                        <div class="form-group">
+                            <label>Appointment Type</label>
+                            <select required>
+                                <option value="">Select treatment</option>
+                                <option>General Dental Consultation</option>
+                                <option>Dental Cleaning</option>
+                                <option>Teeth Whitening</option>
+                                <option>Root Canal Consultation</option>
+                                <option>Orthodontic Consultation</option>
+                                <option>Follow-up Checkup</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred Date</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferred Time</label>
+                            <select required>
+                                <option value="">Select time</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 PM</option>
+                                <option>02:00 PM</option>
+                                <option>03:00 PM</option>
+                                <option>04:00 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <textarea placeholder="Enter your dental concerns..."></textarea>
+                        </div>
+
+                        <button class="primary-btn" type="submit">
+                            <i class="fa-solid fa-calendar-check"></i> Submit Request
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TREATMENTS -->
+        <section class="page-section" id="treatments">
+
+            <div class="page-title">
+                <div>
+                    <h1>My Treatments</h1>
+                    <p>View your dental treatment records and progress.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon teal"><i class="fa-solid fa-tooth"></i></div>
+                        <small>TOTAL TREATMENTS</small>
+                    </div>
+                    <h2>03</h2>
+                    <p>Sample treatment records</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fa-solid fa-check-circle"></i></div>
+                        <small>COMPLETED</small>
+                    </div>
+                    <h2>02</h2>
+                    <p>Completed treatments</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange"><i class="fa-solid fa-clock"></i></div>
+                        <small>IN PROGRESS</small>
+                    </div>
+                    <h2>01</h2>
+                    <p>Ongoing treatment</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple"><i class="fa-solid fa-calendar"></i></div>
+                        <small>NEXT VISIT</small>
+                    </div>
+                    <h2 style="font-size:20px;">12 NOV</h2>
+                    <p>Sample follow-up date</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Treatment History</h3>
+                </div>
+
+                <div class="treatment-title-row">
+                    <div>
+                        <h3>Dental Cleaning</h3>
+                        <p>Treatment ID: SC-2026-001</p>
+                        <p>Doctor: Dental Specialist</p>
+                    </div>
+                    <span class="status progress">In Progress</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <div class="progress-footer">
+                    <span>Treatment progress</span>
+                    <span>65%</span>
+                </div>
+
+                <div class="table-panel" style="margin:24px 0 0;padding:0;border:0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TREATMENT</th>
+                                <th>DATE</th>
+                                <th>DOCTOR</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dental Consultation</td>
+                                <td>01 Nov 2026</td>
+                                <td>Dental Specialist</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dental Cleaning</td>
+                                <td>05 Nov 2026</td>
+                                <td>Dental Specialist</td>
+                                <td><span class="status progress">In Progress</span></td>
+                            </tr>
+                            <tr>
+                                <td>Follow-up Checkup</td>
+                                <td>18 Nov 2026</td>
+                                <td>Dental Specialist</td>
+                                <td><span class="status pending">Upcoming</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- PAYMENTS -->
+        <section class="page-section" id="payments">
+
+            <div class="page-title">
+                <div>
+                    <h1>Payments & Invoices</h1>
+                    <p>Review your dental treatment payment information.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <small>TOTAL TREATMENT COST</small>
+                    <h2>₹15,000</h2>
+                    <p>Sample treatment amount</p>
+                </div>
+
+                <div class="stat-card">
+                    <small>AMOUNT PAID</small>
+                    <h2 style="color:var(--green);">₹10,000</h2>
+                    <p>Sample paid amount</p>
+                </div>
+
+                <div class="stat-card">
+                    <small>BALANCE AMOUNT</small>
+                    <h2 style="color:var(--orange);">₹5,000</h2>
+                    <p>Sample remaining amount</p>
+                </div>
+
+                <div class="stat-card">
+                    <small>PAYMENT STATUS</small>
+                    <h2 style="font-size:20px;">Partial</h2>
+                    <p>Sample payment status</p>
+                </div>
+            </div>
+
+            <div class="table-panel">
+                <div class="panel-header">
+                    <h3>Payment History</h3>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>INVOICE ID</th>
+                            <th>DATE</th>
+                            <th>DESCRIPTION</th>
+                            <th>AMOUNT</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SC-INV-001</td>
+                            <td>01 Nov 2026</td>
+                            <td>Dental Consultation</td>
+                            <td>₹2,000</td>
+                            <td><span class="status completed">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>SC-INV-002</td>
+                            <td>05 Nov 2026</td>
+                            <td>Dental Cleaning</td>
+                            <td>₹8,000</td>
+                            <td><span class="status completed">Paid</span></td>
+                        </tr>
+                        <tr>
+                            <td>SC-INV-003</td>
+                            <td>To Be Confirmed</td>
+                            <td>Follow-up Treatment</td>
+                            <td>₹5,000</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- PRESCRIPTIONS -->
+        <section class="page-section" id="prescriptions">
+
+            <div class="page-title">
+                <div>
+                    <h1>My Prescriptions</h1>
+                    <p>View your prescription records shared by the clinic.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Prescription History</h3>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-file-prescription"></i>
+                    </div>
+                    <div>
+                        <h4>Dental Consultation Prescription</h4>
+                        <p>Date: 01 Nov 2026</p>
+                        <p>Doctor: Dental Specialist</p>
+                        <span class="status completed">Sample Record</span>
+                    </div>
+                </div>
+
+                <div class="empty-state">
+                    <i class="fa-solid fa-prescription-bottle-medical"></i>
+                    <h3>Prescription Information</h3>
+                    <p>Actual prescription details should be provided and verified by your treating dentist.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section class="page-section" id="notifications">
+
+            <div class="page-title">
+                <div>
+                    <h1>Notifications</h1>
+                    <p>Stay updated with your dental care activities.</p>
+                </div>
+
+                <button class="primary-btn" id="clearNotifications" type="button">
+                    <i class="fa-solid fa-trash"></i> Clear All
+                </button>
+            </div>
+
+            <div class="panel" id="notificationList">
+
+                <div class="notification-item">
+                    <div class="notification-icon"><i class="fa-solid fa-check"></i></div>
+                    <div>
+                        <h4>Consultation Completed</h4>
+                        <p>Your initial dental consultation has been marked as completed.</p>
+                        <p>Sample notification</p>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon"><i class="fa-solid fa-tooth"></i></div>
+                    <div>
+                        <h4>Treatment Update</h4>
+                        <p>Your dental cleaning treatment is currently in progress.</p>
+                        <p>Sample notification</p>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon"><i class="fa-solid fa-calendar"></i></div>
+                    <div>
+                        <h4>Upcoming Appointment</h4>
+                        <p>You have a dental appointment scheduled for 12 November.</p>
+                        <p>Sample notification</p>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-icon"><i class="fa-solid fa-credit-card"></i></div>
+                    <div>
+                        <h4>Payment Recorded</h4>
+                        <p>A sample payment record has been added to your dashboard.</p>
+                        <p>Sample notification</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- PROFILE -->
+        <section class="page-section" id="profile">
+
+            <div class="page-title">
+                <div>
+                    <h1>My Profile</h1>
+                    <p>View and update your patient information.</p>
+                </div>
+            </div>
+
+            <div class="panel">
+
+                <div style="display:flex;align-items:center;gap:17px;margin-bottom:25px;">
+                    <div class="profile-avatar" style="width:70px;height:70px;font-size:25px;" id="profileAvatar">P</div>
+                    <div>
+                        <h3 id="profileHeading" style="font-size:18px;color:var(--heading);">Patient Name</h3>
+                        <p style="font-size:10px;color:var(--muted);">SMILECARE Patient</p>
+                    </div>
+                </div>
+
+                <form id="profileForm">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="profileName" value="Patient Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="profileEmail" value="patient@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="profilePhone" value="+91 9000000000">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" id="profileDob">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select id="profileGender">
+                                <option value="">Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" id="profileCity" value="Your City">
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Address</label>
+                            <textarea id="profileAddress">Your Address</textarea>
+                        </div>
+
+                    </div>
+
+                    <button class="primary-btn" type="submit">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="page-section" id="settings">
+
+            <div class="page-title">
+                <div>
+                    <h1>Settings</h1>
+                    <p>Manage your dashboard preferences.</p>
+                </div>
+            </div>
+
+            <div class="panel" style="max-width:650px;">
+
+                <div class="panel-header">
+                    <h3>Appearance Settings</h3>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 0;border-bottom:1px solid var(--border);">
+                    <div>
+                        <h4 style="font-size:11px;color:var(--heading);">Dark Mode</h4>
+                        <p style="font-size:9px;color:var(--muted);">Switch between light and dark themes.</p>
+                    </div>
+                    <button class="primary-btn" id="settingsTheme" type="button">Toggle Theme</button>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:15px;padding:15px 0;">
+                    <div>
+                        <h4 style="font-size:11px;color:var(--heading);">Language Direction</h4>
+                        <p style="font-size:9px;color:var(--muted);">Change page direction between LTR and RTL.</p>
+                    </div>
+                    <button class="primary-btn" id="rtlToggle" type="button">Toggle RTL</button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            <span>© <span id="currentYear"></span> SMILECARE Dental Clinic. All Rights Reserved.</span>
+            <span>Your Smile, Our Priority.</span>
+        </footer>
+
+    </main>
+
+</div>
+</div>
+
+<script>
+
+/* PAGE NAVIGATION */
+
+const sidebar = document.getElementById("sidebar");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.querySelectorAll("[data-page]");
+const sections = document.querySelectorAll(".page-section");
+const breadcrumbTitle = document.getElementById("breadcrumbTitle");
+
+function showPage(pageId){
+
+    const target = document.getElementById(pageId);
+
+    if(!target) return;
+
+    sections.forEach(section => {
+        section.classList.remove("active");
+    });
+
+    target.classList.add("active");
+
+    document.querySelectorAll(".sidebar-nav a[data-page]").forEach(link => {
+        link.classList.toggle("active",link.dataset.page === pageId);
+    });
+
+    breadcrumbTitle.textContent =
+        pageId.charAt(0).toUpperCase() + pageId.slice(1);
+
+    sidebar.classList.remove("open");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click",function(event){
+
+        const pageId = this.dataset.page;
+
+        if(pageId){
+            event.preventDefault();
+            showPage(pageId);
+        }
+
+    });
+
+});
+
+/* MOBILE SIDEBAR */
+
+menuToggle.addEventListener("click",function(){
+    sidebar.classList.toggle("open");
+});
+
+/* THEME */
+
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(){
+
+    const dark = document.body.classList.contains("dark-mode");
+
+    themeToggle.innerHTML = dark
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+}
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark-mode");
+
+    try{
+        localStorage.setItem(
+            "smilecare-theme",
+            document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+    }catch(error){}
+
+    applyTheme();
+}
+
+try{
+    if(localStorage.getItem("smilecare-theme") === "dark"){
+        document.body.classList.add("dark-mode");
+    }
+}catch(error){}
+
+applyTheme();
+
+themeToggle.addEventListener("click",toggleTheme);
+
+document.getElementById("settingsTheme").addEventListener("click",toggleTheme);
+
+/* RTL / LTR */
+
+function toggleRTL(){
+
+    const isRTL = document.documentElement.dir !== "rtl";
+
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+
+    try{
+        localStorage.setItem("smilecare-dir",isRTL ? "rtl" : "ltr");
+    }catch(error){}
+}
+
+try{
+    if(localStorage.getItem("smilecare-dir") === "rtl"){
+        document.documentElement.dir = "rtl";
+    }
+}catch(error){}
+
+document.getElementById("rtlToggle").addEventListener("click",toggleRTL);
+
+/* PROFILE DETAILS */
+
+function updatePatientName(name){
+
+    const cleanName = name.trim() || "Patient";
+
+    document.getElementById("topName").textContent = cleanName;
+
+    document.getElementById("welcomeName").textContent =
+        cleanName.split(" ")[0];
+
+    document.getElementById("profileHeading").textContent = cleanName;
+
+    const initial = cleanName.charAt(0).toUpperCase();
+
+    document.getElementById("topAvatar").textContent = initial;
+    document.getElementById("profileAvatar").textContent = initial;
+
+    try{
+        localStorage.setItem("smilecare-patient-name",cleanName);
+    }catch(error){}
+}
+
+try{
+
+    const savedName = localStorage.getItem("smilecare-patient-name");
+
+    if(savedName){
+        document.getElementById("profileName").value = savedName;
+        updatePatientName(savedName);
+    }
+
+}catch(error){}
+
+/* SAVE PROFILE */
+
+document.getElementById("profileForm").addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const name = document.getElementById("profileName").value;
+
+    updatePatientName(name);
+
+    alert("Profile updated in this browser demo!");
+
+});
+
+/* APPOINTMENT DATE */
+
+const appointmentDate = document.getElementById("appointmentDate");
+
+const today = new Date();
+
+const localDate = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+appointmentDate.min = localDate;
+
+/* APPOINTMENT FORM */
+
+document.getElementById("appointmentForm").addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    if(!this.reportValidity()) return;
+
+    alert("Appointment request submitted in this demo. Connect a backend to save the request.");
+
+    this.reset();
+
+    appointmentDate.min = localDate;
+
+});
+
+/* NOTIFICATIONS */
+
+document.getElementById("notificationBtn").addEventListener("click",function(){
+    showPage("notifications");
+});
+
+document.getElementById("clearNotifications").addEventListener("click",function(){
+
+    const list = document.getElementById("notificationList");
+
+    list.innerHTML = `
+        <div class="empty-state">
+            <i class="fa-regular fa-bell-slash"></i>
+            <h3>No Notifications</h3>
+            <p>Your notification list is currently empty.</p>
+        </div>
+    `;
+
+});
+
+/* LOGOUT */
+
+document.getElementById("logoutBtn").addEventListener("click",function(){
+
+    const confirmLogout = confirm("Are you sure you want to logout?");
+
+    if(confirmLogout){
+        window.location.href = "login.html";
+    }
+
+});
+
+/* CURRENT YEAR */
+
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
